@@ -45,11 +45,21 @@ class ArticleRepositoryAdapter implements ArticleRepository {
     @Override
     public List<Article> findAll(ArticleFacets facets) {
         var pageable = PageRequest.of(facets.page(), facets.size());
-        var spec = Specification.where(ArticleSpecifications.hasAuthorName(facets.author()))
-                .or(ArticleSpecifications.hasTagName(facets.tag()))
-                .or(ArticleSpecifications.hasFavoritedUsername(facets.favorited()));
+        Specification<Article> spec = null;
 
-        return articleJpaRepository.findAll(spec, pageable).getContent();
+        if (facets.author() != null && !facets.author().isBlank()) {
+            spec = ArticleSpecifications.hasAuthorName(facets.author());
+        }
+        if (facets.tag() != null && !facets.tag().isBlank()) {
+            spec = spec == null ? ArticleSpecifications.hasTagName(facets.tag()) : spec.and(ArticleSpecifications.hasTagName(facets.tag()));
+        }
+        if (facets.favorited() != null && !facets.favorited().isBlank()) {
+            spec = spec == null ? ArticleSpecifications.hasFavoritedUsername(facets.favorited()) : spec.and(ArticleSpecifications.hasFavoritedUsername(facets.favorited()));
+        }
+
+        var page = articleJpaRepository.findAll(spec, pageable);
+        System.out.println("Spec: " + spec + ", Pageable: " + pageable + ", Total articles: " + page.getTotalElements() + ", Content size: " + page.getContent().size());
+        return page.getContent();
     }
 
     @Override

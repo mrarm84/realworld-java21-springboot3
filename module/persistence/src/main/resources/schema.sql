@@ -39,6 +39,7 @@ create table article_comment
     author_id  uuid         not null,
     content    varchar(500) not null,
     primary key (id)
+
 );
 
 create table tag
@@ -96,3 +97,121 @@ alter table if exists user_follow
 
 alter table if exists user_follow
     add constraint fk474orxbed564dk0mvggvt4xon foreign key (following_id) references users;
+
+-- Test data inserts
+
+-- Users
+INSERT INTO users (id, email, username, password, bio, image_url, created_at) VALUES
+('173fb679-54e5-46d1-839d-73ec9db88394', 'user1@example.com', 'user1', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user1', 'https://example.com/user1.jpg', CURRENT_TIMESTAMP),
+('2183d5d7-1260-4d5d-af37-41a2bf273ade', 'user2@example.com', 'user2', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user2', 'https://example.com/user2.jpg', CURRENT_TIMESTAMP),
+('e43c8895-516f-4a38-917c-37e97077e4e4', 'user3@example.com', 'user3', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user3', 'https://example.com/user3.jpg', CURRENT_TIMESTAMP),
+('5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', 'user4@example.com', 'user4', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user4', 'https://example.com/user4.jpg', CURRENT_TIMESTAMP),
+('af5828c8-6fa9-41f9-8aee-53445b31441b', 'user5@example.com', 'user5', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user5', 'https://example.com/user5.jpg', CURRENT_TIMESTAMP),
+('60a41ae5-c848-48da-9f5d-92418afb52d3', 'user6@example.com', 'user6', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user6', 'https://example.com/user6.jpg', CURRENT_TIMESTAMP),
+('91364115-900c-4a64-a49d-4e2b37d2190d', 'user7@example.com', 'user7', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user7', 'https://example.com/user7.jpg', CURRENT_TIMESTAMP),
+('8d27a460-89c2-4874-8d76-7a559e7a0aa1', 'user8@example.com', 'user8', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user8', 'https://example.com/user8.jpg', CURRENT_TIMESTAMP),
+('8368cd70-bbbc-447b-b98a-a289229f337f', 'user9@example.com', 'user9', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user9', 'https://example.com/user9.jpg', CURRENT_TIMESTAMP),
+('1a35f81e-fcae-4ee1-a7cc-2bfca8ead7a4', 'user10@example.com', 'user10', '$2b$12$aS1v5xUVqK6sbFUhPi.v3uy3GSHcISL7wo6RZtoHeE2oeaJIOhY06', 'Bio for user10', 'https://example.com/user10.jpg', CURRENT_TIMESTAMP);
+
+-- Tags
+INSERT INTO tag (name, created_at) VALUES
+('java', CURRENT_TIMESTAMP),
+('spring', CURRENT_TIMESTAMP),
+('kotlin', CURRENT_TIMESTAMP),
+('react', CURRENT_TIMESTAMP),
+('angular', CURRENT_TIMESTAMP),
+('docker', CURRENT_TIMESTAMP),
+('kubernetes', CURRENT_TIMESTAMP),
+('aws', CURRENT_TIMESTAMP),
+('testing', CURRENT_TIMESTAMP),
+('security', CURRENT_TIMESTAMP);
+
+-- Articles
+INSERT INTO article (author_id, description, slug, title, content, created_at, updated_at) VALUES
+('173fb679-54e5-46d1-839d-73ec9db88394', 'Description for article 1', 'article-1', 'Article 1', 'Content for article 1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('2183d5d7-1260-4d5d-af37-41a2bf273ade', 'Description for article 2', 'article-2', 'Article 2', 'Content for article 2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('e43c8895-516f-4a38-917c-37e97077e4e4', 'Description for article 3', 'article-3', 'Article 3', 'Content for article 3', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', 'Description for article 4', 'article-4', 'Article 4', 'Content for article 4', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('af5828c8-6fa9-41f9-8aee-53445b31441b', 'Description for article 5', 'article-5', 'Article 5', 'Content for article 5', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('60a41ae5-c848-48da-9f5d-92418afb52d3', 'Description for article 6', 'article-6', 'Article 6', 'Content for article 6', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('91364115-900c-4a64-a49d-4e2b37d2190d', 'Description for article 7', 'article-7', 'Article 7', 'Content for article 7', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('8d27a460-89c2-4874-8d76-7a559e7a0aa1', 'Description for article 8', 'article-8', 'Article 8', 'Content for article 8', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('8368cd70-bbbc-447b-b98a-a289229f337f', 'Description for article 9', 'article-9', 'Article 9', 'Content for article 9', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('1a35f81e-fcae-4ee1-a7cc-2bfca8ead7a4', 'Description for article 10', 'article-10', 'Article 10', 'Content for article 10', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+-- Article Tags
+INSERT INTO article_tag (article_id, tag_name, created_at) VALUES
+(1, 'java', CURRENT_TIMESTAMP),
+(1, 'spring', CURRENT_TIMESTAMP),
+(2, 'kotlin', CURRENT_TIMESTAMP),
+(2, 'spring', CURRENT_TIMESTAMP),
+(3, 'react', CURRENT_TIMESTAMP),
+(3, 'angular', CURRENT_TIMESTAMP),
+(4, 'docker', CURRENT_TIMESTAMP),
+(4, 'kubernetes', CURRENT_TIMESTAMP),
+(5, 'aws', CURRENT_TIMESTAMP),
+(5, 'security', CURRENT_TIMESTAMP),
+(6, 'testing', CURRENT_TIMESTAMP),
+(6, 'java', CURRENT_TIMESTAMP),
+(7, 'spring', CURRENT_TIMESTAMP),
+(7, 'kotlin', CURRENT_TIMESTAMP),
+(8, 'react', CURRENT_TIMESTAMP),
+(8, 'docker', CURRENT_TIMESTAMP),
+(9, 'kubernetes', CURRENT_TIMESTAMP),
+(9, 'aws', CURRENT_TIMESTAMP),
+(10, 'security', CURRENT_TIMESTAMP),
+(10, 'testing', CURRENT_TIMESTAMP);
+
+-- Article Favorites
+INSERT INTO article_favorite (article_id, user_id, created_at) VALUES
+(1, '2183d5d7-1260-4d5d-af37-41a2bf273ade', CURRENT_TIMESTAMP),
+(1, 'e43c8895-516f-4a38-917c-37e97077e4e4', CURRENT_TIMESTAMP),
+(2, '173fb679-54e5-46d1-839d-73ec9db88394', CURRENT_TIMESTAMP),
+(2, '5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', CURRENT_TIMESTAMP),
+(3, 'af5828c8-6fa9-41f9-8aee-53445b31441b', CURRENT_TIMESTAMP),
+(3, '60a41ae5-c848-48da-9f5d-92418afb52d3', CURRENT_TIMESTAMP),
+(4, '91364115-900c-4a64-a49d-4e2b37d2190d', CURRENT_TIMESTAMP),
+(4, '8d27a460-89c2-4874-8d76-7a559e7a0aa1', CURRENT_TIMESTAMP),
+(5, '8368cd70-bbbc-447b-b98a-a289229f337f', CURRENT_TIMESTAMP),
+(5, '1a35f81e-fcae-4ee1-a7cc-2bfca8ead7a4', CURRENT_TIMESTAMP),
+(6, '173fb679-54e5-46d1-839d-73ec9db88394', CURRENT_TIMESTAMP),
+(7, '2183d5d7-1260-4d5d-af37-41a2bf273ade', CURRENT_TIMESTAMP),
+(8, 'e43c8895-516f-4a38-917c-37e97077e4e4', CURRENT_TIMESTAMP),
+(9, '5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', CURRENT_TIMESTAMP),
+(10, 'af5828c8-6fa9-41f9-8aee-53445b31441b', CURRENT_TIMESTAMP);
+
+-- Article Comments
+INSERT INTO article_comment (article_id, author_id, content, created_at) VALUES
+(1, '2183d5d7-1260-4d5d-af37-41a2bf273ade', 'Great article!', CURRENT_TIMESTAMP),
+(1, 'e43c8895-516f-4a38-917c-37e97077e4e4', 'Very informative.', CURRENT_TIMESTAMP),
+(2, '173fb679-54e5-46d1-839d-73ec9db88394', 'Thanks for sharing.', CURRENT_TIMESTAMP),
+(2, '5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', 'Interesting perspective.', CURRENT_TIMESTAMP),
+(3, 'af5828c8-6fa9-41f9-8aee-53445b31441b', 'Well written.', CURRENT_TIMESTAMP),
+(3, '60a41ae5-c848-48da-9f5d-92418afb52d3', 'I learned a lot.', CURRENT_TIMESTAMP),
+(4, '91364115-900c-4a64-a49d-4e2b37d2190d', 'Awesome content.', CURRENT_TIMESTAMP),
+(4, '8d27a460-89c2-4874-8d76-7a559e7a0aa1', 'Keep it up!', CURRENT_TIMESTAMP),
+(5, '8368cd70-bbbc-447b-b98a-a289229f337f', 'Fantastic read.', CURRENT_TIMESTAMP),
+(5, '1a35f81e-fcae-4ee1-a7cc-2bfca8ead7a4', 'Very helpful.', CURRENT_TIMESTAMP),
+(6, '173fb679-54e5-46d1-839d-73ec9db88394', 'Nice work.', CURRENT_TIMESTAMP),
+(7, '2183d5d7-1260-4d5d-af37-41a2bf273ade', 'Excellent.', CURRENT_TIMESTAMP),
+(8, 'e43c8895-516f-4a38-917c-37e97077e4e4', 'Good job.', CURRENT_TIMESTAMP),
+(9, '5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', 'Impressive.', CURRENT_TIMESTAMP),
+(10, 'af5828c8-6fa9-41f9-8aee-53445b31441b', 'Well done.', CURRENT_TIMESTAMP);
+
+-- User Follows
+INSERT INTO user_follow (follower_id, following_id, created_at) VALUES
+('173fb679-54e5-46d1-839d-73ec9db88394', '2183d5d7-1260-4d5d-af37-41a2bf273ade', CURRENT_TIMESTAMP),
+('173fb679-54e5-46d1-839d-73ec9db88394', 'e43c8895-516f-4a38-917c-37e97077e4e4', CURRENT_TIMESTAMP),
+('2183d5d7-1260-4d5d-af37-41a2bf273ade', '173fb679-54e5-46d1-839d-73ec9db88394', CURRENT_TIMESTAMP),
+('2183d5d7-1260-4d5d-af37-41a2bf273ade', '5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', CURRENT_TIMESTAMP),
+('e43c8895-516f-4a38-917c-37e97077e4e4', 'af5828c8-6fa9-41f9-8aee-53445b31441b', CURRENT_TIMESTAMP),
+('e43c8895-516f-4a38-917c-37e97077e4e4', '60a41ae5-c848-48da-9f5d-92418afb52d3', CURRENT_TIMESTAMP),
+('5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', '91364115-900c-4a64-a49d-4e2b37d2190d', CURRENT_TIMESTAMP),
+('5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', '8d27a460-89c2-4874-8d76-7a559e7a0aa1', CURRENT_TIMESTAMP),
+('af5828c8-6fa9-41f9-8aee-53445b31441b', '8368cd70-bbbc-447b-b98a-a289229f337f', CURRENT_TIMESTAMP),
+('af5828c8-6fa9-41f9-8aee-53445b31441b', '1a35f81e-fcae-4ee1-a7cc-2bfca8ead7a4', CURRENT_TIMESTAMP),
+('60a41ae5-c848-48da-9f5d-92418afb52d3', '173fb679-54e5-46d1-839d-73ec9db88394', CURRENT_TIMESTAMP),
+('91364115-900c-4a64-a49d-4e2b37d2190d', '2183d5d7-1260-4d5d-af37-41a2bf273ade', CURRENT_TIMESTAMP),
+('8d27a460-89c2-4874-8d76-7a559e7a0aa1', 'e43c8895-516f-4a38-917c-37e97077e4e4', CURRENT_TIMESTAMP),
+('8368cd70-bbbc-447b-b98a-a289229f337f', '5c7cb930-b4e6-498d-ac8f-fda0a5bf1cfa', CURRENT_TIMESTAMP),
+('1a35f81e-fcae-4ee1-a7cc-2bfca8ead7a4', 'af5828c8-6fa9-41f9-8aee-53445b31441b', CURRENT_TIMESTAMP);

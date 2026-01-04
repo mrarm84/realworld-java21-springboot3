@@ -39,7 +39,9 @@ class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        requests -> requests.requestMatchers(HttpMethod.POST, "/api/users", "/api/users/login")
+                        requests -> requests.requestMatchers("/h2-console/**")
+                                .permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/users", "/api/users/login")
                                 .permitAll()
                                 .requestMatchers(
                                         HttpMethod.GET,
@@ -47,7 +49,8 @@ class SecurityConfiguration {
                                         "/api/articles/{slug}",
                                         "/api/articles",
                                         "/api/profiles/{username}",
-                                        "/api/tags")
+                                        "/api/tags"
+                                )
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
@@ -57,6 +60,7 @@ class SecurityConfiguration {
                          */
                         .bearerTokenResolver(new AuthTokenResolver())
                         .jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(new AuthTokenConverter())))
+                .headers(headers -> headers.frameOptions().disable())
                 .sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(STATELESS))
                 .exceptionHandling(exceptionHandler -> exceptionHandler
                         /* Note: If you want, you can change the prefix of the Authorization token from 'Bearer' to 'Token'. */

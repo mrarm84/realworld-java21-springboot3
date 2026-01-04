@@ -15,9 +15,6 @@ import io.zhc1.realworld.model.User;
 interface ArticleJpaRepository extends JpaRepository<Article, Integer>, JpaSpecificationExecutor<Article> {
     Optional<Article> findBySlug(String slug);
 
-    @SuppressWarnings("NullableProblems")
-    Page<Article> findAll(Specification<Article> spec, Pageable pageable);
-
     Page<Article> findByAuthorInOrderByCreatedAtDesc(Collection<User> authors, Pageable pageable);
 
     boolean existsByTitle(String title);
